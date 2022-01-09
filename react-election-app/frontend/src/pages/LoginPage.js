@@ -5,10 +5,9 @@ import LoginForm from "../component/LoginForm"
 function LoginPage(){
     
     return <section>
-        <AppBar/>
-        <Layout>
+        
         <LoginForm/>
-        </Layout>
+       
         </section>
 }
 export default LoginPage
