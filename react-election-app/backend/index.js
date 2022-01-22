@@ -17,6 +17,7 @@ app.get('/candidats',candidat_routes.list_cands)
 app.post('/login_candidat',candidat_routes.login_candidat)
 app.post('/inscription_candidat',candidat_routes.inscription_candidat)
 app.post('/test',candidat_routes.test)
+app.post('/vote',candidat_routes.vote)
 //-----------fin des méthodes des candidats----------------------
 app.listen(port,()=>{
     console.log("server connected")

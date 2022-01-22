@@ -4,9 +4,26 @@ const Candidat = require('./Models/Candidat')
 const router = express.Router()
 
 var list_cands=router.get('/candidats',(req,res)=>{
-    Candidat.findAll({attributes:["cin","nom","prenom"]}).then((candidats)=> res.json(candidats)) 
+    Candidat.findAll({attributes:["cin","nom","prenom"]},{where:{etat_compte:1}}).then((candidats)=> 
+    {   for (var i=0;i<candidats.length;i++){
+      var obj=candidats[i]
+      
+      var candidat=[]
+      var c ={cin:obj.cin,nom:obj.nom,prenom:obj.prenom}
+      candidat.push({cin:obj.cin,nom:obj.nom,prenom:obj.prenom})
+    //  candidat[i]={cin:obj.cin,nom:obj.nom,prenom:obj.prenom}
+      console.log("this is th value of c --> "+c)
+    }
+    console.log(candidat)
+    console.log(candidats[0])
+      res.json({candidat})}
+    ) 
 })
 //fin methode list_candidats-----------------------------------------------------------------
+var vote = router.post('/vote',(req,res)=>{
+Candidat.increment('nb_vote',{by :1,where:{cin:req.body.cin}}).then(res.sendStatus(200))
+})
+//----------------fin de method vote---------------------------------------------------------
 var login_candidat=router.post('/login_candidat',  (req, res) => {
     Candidat.findOne({
         attributes:["cin","nom","prenom"],
@@ -94,3 +111,4 @@ exports.test=test
 exports.list_cands = list_cands
 exports.login_candidat = login_candidat
 exports.inscription_candidat = inscription_candidat
+exports.vote= vote

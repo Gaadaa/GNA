@@ -40,7 +40,7 @@ if(!isVerified){
     alert("veuillez indiquer que vous n'êtes pas un robot")
 }
 else if(isCorrect&&isVerified&&!(isChecked)){
-      axios.post("http://localhost:3001/register_electeur",{
+      axios.post("https://gnaserver.herokuapp.com/register_electeur",{
             cin:cin_submitted,
         mot_de_passe:pwd_submitted,
       prenom:prenom_submitted,
@@ -60,7 +60,7 @@ else if(isCorrect&&isVerified&&!(isChecked)){
       })
 }
 else if(isCorrect&&isVerified&&isChecked){
-      axios.post("http://localhost:3001/inscription_candidat",{
+      axios.post("https://gnaserver.herokuapp.com/inscription_candidat",{
             cin:cin_submitted,
         mot_de_passe:pwd_submitted,
       prenom:prenom_submitted,

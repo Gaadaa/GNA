@@ -7,9 +7,11 @@ import axios from 'axios';
 import VotingPage from '../pages/VotingPage';
 import Layout from './Layout/Layout'
 import AppBar from './Layout/AppBar'
+//import { LoginContext } from '../Helper/Context';
 // ceci est le formulaire de login 
 
 function LoginForm(){
+  //const {LoggedIn,setLoggedIn} = useContext(LoginContext)
  const [isVerified,setIsVerified]= useState(false)
  const [isChecked,setIsChecked]=useState(false)
  const [isOpen,setIsOpen]=useState(true)
@@ -34,7 +36,7 @@ function SubmitHandler(event)
     alert("veuillez indiquer que vous n'êtes pas un robot")
   } 
 else if(!(isChecked)&&isVerified){
-      axios.post("http://localhost:3001/login_electeur",{
+      axios.post("https://gnaserver.herokuapp.com/login_electeur",{
         cin:cin.current.value,
         mot_de_passe:mot_de_passe.current.value
           }).then(result =>{
@@ -45,12 +47,14 @@ else if(!(isChecked)&&isVerified){
             setInputed_cin(cin.current.value)
             setInputed_token(result.data.token)
             setIsOpen(false)
+            
+
             }
            
           }).catch(err=>{console.log(err)})
     }
     else if(isChecked&&isVerified){
-      axios.post("http://localhost:3001/login_candidat",{
+      axios.post("https://gnaserver.herokuapp.com/login_candidat",{
         cin:cin.current.value,
         mot_de_passe:mot_de_passe.current.value
           }).then(result =>{

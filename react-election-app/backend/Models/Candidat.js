@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize/dist')
+const { Sequelize } = require('sequelize')
 const sequelize = require('../db')
 const Candidat = sequelize.define('candidat', {
 cin : {
